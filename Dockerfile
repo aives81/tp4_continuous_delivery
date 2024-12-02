@@ -9,7 +9,10 @@ RUN mvn clean package -DskipTests
 #Construction de l'image finale
 FROM openjdk:21-ea-oraclelinux8
 
-ENV APP_NAME=tp-cd-2024
-COPY --from=root target/*.jar /app/${APP_NAME}.jar
+WORKDIR /app
 
-ENTRYPOINT ["java", "-jar", "/app/${APP_NAME}.jar"]
+ENV APP_NAME=tp-cd-2024
+
+COPY --from=root target/*.jar ${APP_NAME}.jar
+
+ENTRYPOINT ["sh", "-c", "java -jar ${APP_NAME}.jar"]
