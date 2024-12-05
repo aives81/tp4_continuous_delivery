@@ -24,7 +24,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: [test, docs]
+    needs: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,7 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, test]
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Login to DockerHub
@@ -56,4 +55,3 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/tp-cd-2024:main
-
