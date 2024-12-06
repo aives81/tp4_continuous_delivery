@@ -46,6 +46,7 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push $DOCKER_USERNAME/my_springboot_app:main
 
+
   deploy-on-render:
     needs: build-on-docker-and-push-to-dockerhub
     runs-on: ubuntu-latest
@@ -55,9 +56,10 @@ jobs:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
-            curl -X POST -H "Authorization: Bearer $RENDE_API_KEY" \
+            curl -X POST \
+            -H "Authorization: Bearer $RENDER_API_KEY" \
             -H "Content-Type: application/json" \
-            -d $RENDER_DEPLOY_HOOK
+            $RENDER_DEPLOY_HOOK
 
   generate-docs-and-deploy-on-netlify:
     runs-on: ubuntu-latest
