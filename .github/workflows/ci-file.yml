@@ -79,6 +79,9 @@ jobs:
       - name: Generate docs
         run: ./mvnw javadoc:javadoc
 
+      - name: Verify documentation directory
+        run: ls target/site/apidocs
+
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
