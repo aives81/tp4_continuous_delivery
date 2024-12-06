@@ -74,6 +74,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.11.1</version>
                 <configuration>
+                    <outputDirectory>${project.build.directory}/site/apidocs</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
