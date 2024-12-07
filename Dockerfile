@@ -1,4 +1,4 @@
-FROM maven:3.9.4-eclipse-temurin-21-alpine as root
+FROM maven:3.9.4-eclipse-temurin-21-alpine AS root
 
 #Construction de la premiere image
 COPY pom.xml ./

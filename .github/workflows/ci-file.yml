@@ -100,7 +100,7 @@ jobs:
       - name: Setup java 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: '21'
 
       - name: Install dependencies
@@ -110,7 +110,7 @@ jobs:
         run: ./mvnw javadoc:javadoc
 
       - name: Verify documentation directory
-        run: ls target/site/apidocs
+        run: ls target/site/apidocs/apidocs
 
       - uses: actions/setup-node@v4
         with:
@@ -124,4 +124,4 @@ jobs:
           NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          netlify deploy --prod --dir=target/site/apidocs --message "Deploying API documentation" --site=$NETLIFY_SITE_ID --auth=$NETLIFY_ACCESS_TOKEN
+          netlify deploy --prod --dir=target/site/apidocs/apidocs --message "Deploying API documentation" --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN
